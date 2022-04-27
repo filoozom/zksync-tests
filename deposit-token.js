@@ -18,9 +18,11 @@ const wallet = new Wallet(
 
 // Deposit tokens
 (async () => {
+  // Not extremely precise but will probably do
+  const amount = BigInt(Number(process.argv[2]) * 1e18);
   const tx = await wallet.deposit({
     token,
-    amount: 100n * 10n ** 18n,
+    amount,
     approveERC20: true,
   });
   console.log(await tx.wait());
